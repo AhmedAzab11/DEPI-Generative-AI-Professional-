@@ -3,7 +3,7 @@
   ## Graduation Project of Generative AI Professional Track 🎓
   
 # Team Members
-Esraa Samir Amin
+Esraa Samir Amin /n
 Rahma Abdulla Ramadan Ahmed
 Mohamed Hesham Ismail
 Ahmed Abdelrahman Abdelfattah Azab
