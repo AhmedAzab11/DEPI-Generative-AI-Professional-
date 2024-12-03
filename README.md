@@ -41,7 +41,7 @@ The project's unique value lies in its ability to:
 ## ⦁	Motivation and Problem Statement 
 
    ### Motivation
-     In today's rapidly evolving healthcare environment, both patients and professionals face challenges in accessing accurate and timely 
+   In today's rapidly evolving healthcare environment, both patients and professionals face challenges in accessing accurate and timely 
    medical information. For patients, understanding complex medical terminology, diagnoses, or treatment plans can be overwhelming, 
    particularly when unfamiliar medical abbreviations are used or when information is not available in their native language. Healthcare 
    providers, on the other hand, need to stay up-to-date with the latest medical developments, often requiring quick access to detailed 
@@ -87,6 +87,179 @@ The primary objectives of the project are:
        in making informed decisions during patient consultations.
        
 By achieving these objectives, the project will deliver a powerful, scalable solution that improves the accessibility and accuracy of medical information for both healthcare professionals and patients.
+# ⦁ End users and Features
+End User Personas:
+ ## Patients and the General Public:
+⦁ Individuals seeking reliable medical information and clarification on symptoms, treatments, or medical terms, without necessarily 
+  having a healthcare background.
+⦁ Users in non-English-speaking regions or those who prefer interacting with technology in their native language (e.g., Arabic, Spanish).
+ ## Healthcare Providers:
+  ⦁ Doctors, nurses, and other healthcare professionals who require quick, accurate interpretations of medical abbreviations or up-to- 
+    date medical information during patient interactions.
+  ⦁ Professionals are seeking to streamline their workflow by using a tool that efficiently clarifies complex medical terminology.
+ ## Medical Students and Researchers:
+    ⦁ Individuals involved in medical education or research need access to accurate explanations of terminology, abbreviations, and 
+      medical concepts.
+    ⦁ Users are looking to enhance their learning by interacting with an AI that provides detailed information based on comprehensive 
+      medical datasets.
+ ## Key Features that Address User Needs
+     ### Multilingual Medical Query Support:
+          ⦁ Allows users to ask medical-related questions in multiple languages (including Arabic, English, and Spanish).
+          ⦁ Supports global access, providing a user-friendly experience for non-English-speaking individuals.
+     ### Medical Abbreviation Disambiguation:
+          ⦁ The chatbot can interpret and disambiguate complex medical abbreviations, offering expanded definitions and context- 
+            sensitive explanations.
+          ⦁ This feature helps professionals quickly understand medical jargon and assists patients in comprehending complex diagnoses.
+     ### Real-Time Responses:
+          ⦁ Provides instant, accurate answers to medical queries, including detailed explanations of symptoms, treatments, and 
+            conditions.
+          ⦁ Enhances the user experience by delivering immediate, trustworthy information at the point of need.
+     ### Streamlit-Based User Interface:
+          ⦁ Offers a simple, intuitive interface that allows users to input their queries and receive responses effortlessly.
+          ⦁ Includes additional options for displaying data insights (e.g., memory usage, dataset information) to enhance transparency 
+            and usability.
+     ### Optimized for Resource Efficiency (LoRA Integration):
+          ⦁ The chatbot is optimized to function with low resource consumption while maintaining high performance. This allows for 
+            scalability, making the solution suitable for devices with limited computing power or low-cost deployment environments.
+          ⦁ Key for institutions with budget constraints or users in regions with limited technology access.
+
+
+# Data Flow 
+  ## Data Collection:
+  ⦁ Data is collected from MeDAL in the form of CSV files that contain medical abbreviations and their corresponding explanations and 
+    contexts.
+⦁ The dataset is structured with fields such as text (the medical term/abbreviation), location (where in the document the abbreviation 
+  appears), and label (the expanded form or meaning of the abbreviation).
+  ## Data Storage:
+      ⦁ Since the dataset is non-relational, the data is loaded dynamically using Python libraries such as datasets and pandas, which 
+        provide access to the CSV data in-memory for efficient retrieval and use by the model.
+      ⦁ The model itself doesn't require long-term storage of the data, as it processes input dynamically.
+  ## Data Access:
+     ⦁ When a user queries the system, the chatbot processes the input, uses the MeDAL dataset to interpret abbreviations or medical 
+       terms, and generates a real-time response.
+     ⦁ Data access involves loading and parsing the CSV files, tokenizing the medical data, and then passing the parsed data into the AI 
+       model to interpret and generate accurate medical information.
+##CSV Data Features:
+    ⦁ Features: The CSV files used in this project contain fields like text, label, and location, where text represents the medical term 
+      or abbreviation, label provides the expanded meaning, and location gives context for the term’s use.
+    ⦁ Shape: Typically, the dataset includes several thousand rows, each representing a unique medical abbreviation or term.
+    ⦁ Balanced or Not: The dataset is generally balanced as it covers a wide range of medical abbreviations and terms across various 
+      medical domains (respiratory, cardiovascular, etc.), ensuring fair representation.
+
+# Programming Languages + Frameworks
+  ## Programming Languages
+    ### Python: The primary programming language used for this project. Python was selected due to its versatility, rich ecosystem of 
+          machine learning libraries, and ease of integration with frameworks like Hugging Face Transformers 
+
+  ## Frameworks and Tools
+    ### Transformers (by Hugging Face):
+
+    ⦁ Purpose: Used to load, fine-tune, and run the Gemma-7B model for generating medical text responses. The Transformers library 
+      provides efficient model loading, training, and deployment functionalities.
+    ⦁ Why: It is the go-to library for handling large language models like Gemma-7B, offering pre-trained models and tokenizers that are 
+      easy to use with state-of-the-art performance.
+
+    ### Unsloth:
+     ⦁	Purpose: Used to download and manage the FastLanguageModel versions like Gemma-7B. This tool is specifically designed for 
+        handling generative AI models that require efficient training and inference.
+     ⦁ Why: Provides a streamlined API for handling large-scale models, with built-in optimizations such as LoRA (Low-Rank Adaptation).    ## Streamlit:
+     ⦁ Purpose: A Python-based framework for building web applications, used here to create an interactive user interface for the 
+        chatbot.
+     ⦁ Why: Streamlit allows for fast, straightforward deployment of web apps without needing extensive front-end development 
+       experience. This makes it ideal for quickly building and deploying the chatbot interface.
+
+  ## PyTorch:
+     ⦁ Purpose: A deep learning framework used to implement and run the Gemma-7B model on GPUs. It is also used for handling tensor 
+       operations and model inference.
+     ⦁ Why: PyTorch is widely used for machine learning and is compatible with Hugging Face Transformers. It offers GPU acceleration for 
+       handling large models like Gemma-7B efficiently.
+
+  ## Datasets (by Hugging Face):
+
+  ⦁ Purpose: A library used to load and preprocess the MeDAL dataset. It handles the structured CSV data and prepares it for model input.
+  ⦁ Why: Datasets provides an efficient way to load, process, and manage large datasets, making it easy to integrate with machine 
+    learning workflows.
+    
+  ## Supporting Technologies
+
+  ### APIs:
+     ⦁ The Streamlit application can be enhanced by integrating with external medical APIs or knowledge bases if additional real-time 
+       medical data is required. APIs could provide up-to-date medical articles, symptom checkers, or drug information.
+  ### Cloud Platforms:
+     ⦁ Hugging Face Model Hub: If the fine-tuned model is hosted for public access, it can be deployed directly through the Hugging Face 
+       API, simplifying model updates and versioning.
+
+
+# Methodology  
+ ## Development Workflow: 
+    (data collection → preprocessing → model fine-tuning → testing).  This workflow ensures an organized approach to the chatbot's 
+     development, from gathering data to testing the final model.
+     ### Data Collection: 
+     The primary dataset used is the MeDAL (Medical Dataset for Abbreviation Disambiguation), which contains well-organized medical 
+     terms, abbreviations, and their expanded definitions.
+     ### Preprocessing: Data is preprocessed to ensure compatibility with the model, including tokenization, removing special 
+         characters, and inserting EOS tokens.
+     ### Model Fine-Tuning: The pre-trained Gemma-7B model, from the Unsloth library, is fine-tuned using the MeDAL dataset, optimized 
+         through LoRA to minimize resource consumption.
+     ### Testing: After fine-tuning, the chatbot was tested for accuracy, responsiveness, and the ability to handle various medical 
+         queries in multiple languages.
+ 
+# Data Preparation
+ ## Dataset Used:
+    ### MeDAL Dataset: The dataset used is the MeDAL (Medical Dataset for Abbreviation Disambiguation), which is a comprehensive source 
+        for medical abbreviations and terminology. This dataset is essential for training the chatbot to recognize and explain medical 
+        terms accurately, especially within multilingual contexts.
+##vPreprocessing Steps:
+   ⦁ Tokenization: Prepared data for the model using Hugging Face tokenizers to ensure the model interprets input properly.
+   ⦁ EOS Token Insertion: End-of-sequence (EOS) tokens were added to prevent infinite generation loops during response generation.
+
+# Model Fine-Tuning
+ ## Parameter-Efficient Fine-Tuning:
+    ### LoRA (Low-Rank Adaptation): The project leverages LoRA to fine-tune the pre-trained Gemma-7B model. This method minimizes 
+        computational overhead by allowing only specific layers of the model to be fine-tuned, which reduces memory consumption and 
+        speeds up the training process.
+    ### Gradient Checkpointing: Gradient checkpointing is enabled during fine-tuning to further reduce memory usage, allowing the model 
+        to handle larger input sequences without requiring excessive computational resources.
+# Models Used:
+ ## Gemma-7B: The core model used in the project, Gemma-7B, is a pre-trained model optimized for handling medical-related text generation tasks. It was fine-tuned using the MeDAL dataset and further optimized for efficient inference.
+
+
+# Inference Optimization
+  ## 1. Quantization:
+     ⦁ Applied 4-bit quantization for faster inference and reduced memory usage.
+  ## 2. RoPE Scaling:
+     ⦁ Implemented Rotational Positional Embeddings (RoPE) to handle longer input sequences effectively, enabling the chatbot to 
+       maintain coherent, context-aware conversations.
+
+# Challenges and Solutions  
+
+  ## Dataset Size: The MEDAL dataset was too large to process efficiently.
+        ### Solution: We used the Unsloth library to manage loading and reduce memory constraints.
+ ## Memory Constraints:
+        ⦁Solution: Implemented gradient checkpointing and 4-bit quantization to reduce memory usage during training and inference.
+ ## Peak Reserved Memory: 6.273 GB
+ ## Memory Reserved During Training: 1.773 GB (~12.02% of total system memory).
+ ## Long Sequence Handling:
+     ### Solution: Used RoPE scaling to maintain conversation coherence across extended interactions.
+ ## Response Latency:##
+    ### Solution: Fine-tuned models with LoRA to improve inference speed for real-time responses.
+ ## Dynamic Responses with Constraints: Ensuring the chatbot generates personalized responses while adhering to predefined constraints 
+    such as length limits and topic relevance.
+    ### Solution: Used prompt engineering and rule-based constraints to guide response generation, ensuring that responses are 
+        dynamically adjusted based on the context while adhering to the rules.
+ ## Testing and Results  
+    ### Training Time:
+       Total Time: 634.1 seconds (~10.57 minutes)
+       raining Loss Reduction (across 60 steps):
+       Initial Loss: 3.452600
+       Final Loss: 2.207700
+## Memory Usage:
+      Peak Reserved Memory: 6.273 GB
+      Memory Usage During Training: 1.773 GB (~12% of system memory).
+
+    
+
+
 
 
 
