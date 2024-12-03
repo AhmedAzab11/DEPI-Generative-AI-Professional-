@@ -103,22 +103,22 @@ End User Personas:
     ⦁ Users are looking to enhance their learning by interacting with an AI that provides detailed information based on comprehensive 
       medical datasets.
  ## Key Features that Address User Needs
-     ### Multilingual Medical Query Support:
+  ### Multilingual Medical Query Support:
           ⦁ Allows users to ask medical-related questions in multiple languages (including Arabic, English, and Spanish).
           ⦁ Supports global access, providing a user-friendly experience for non-English-speaking individuals.
-     ### Medical Abbreviation Disambiguation:
+  ### Medical Abbreviation Disambiguation:
           ⦁ The chatbot can interpret and disambiguate complex medical abbreviations, offering expanded definitions and context- 
             sensitive explanations.
           ⦁ This feature helps professionals quickly understand medical jargon and assists patients in comprehending complex diagnoses.
-     ### Real-Time Responses:
+  ### Real-Time Responses:
           ⦁ Provides instant, accurate answers to medical queries, including detailed explanations of symptoms, treatments, and 
             conditions.
           ⦁ Enhances the user experience by delivering immediate, trustworthy information at the point of need.
-     ### Streamlit-Based User Interface:
+  ### Streamlit-Based User Interface:
           ⦁ Offers a simple, intuitive interface that allows users to input their queries and receive responses effortlessly.
           ⦁ Includes additional options for displaying data insights (e.g., memory usage, dataset information) to enhance transparency 
             and usability.
-     ### Optimized for Resource Efficiency (LoRA Integration):
+  ### Optimized for Resource Efficiency (LoRA Integration):
           ⦁ The chatbot is optimized to function with low resource consumption while maintaining high performance. This allows for 
             scalability, making the solution suitable for devices with limited computing power or low-cost deployment environments.
           ⦁ Key for institutions with budget constraints or users in regions with limited technology access.
@@ -128,8 +128,8 @@ End User Personas:
   ## Data Collection:
   ⦁ Data is collected from MeDAL in the form of CSV files that contain medical abbreviations and their corresponding explanations and 
     contexts.
-⦁ The dataset is structured with fields such as text (the medical term/abbreviation), location (where in the document the abbreviation 
-  appears), and label (the expanded form or meaning of the abbreviation).
+  ⦁ The dataset is structured with fields such as text (the medical term/abbreviation), location (where in the document the abbreviation 
+    appears), and label (the expanded form or meaning of the abbreviation).
   ## Data Storage:
       ⦁ Since the dataset is non-relational, the data is loaded dynamically using Python libraries such as datasets and pandas, which 
         provide access to the CSV data in-memory for efficient retrieval and use by the model.
@@ -139,30 +139,32 @@ End User Personas:
        terms, and generates a real-time response.
      ⦁ Data access involves loading and parsing the CSV files, tokenizing the medical data, and then passing the parsed data into the AI 
        model to interpret and generate accurate medical information.
-##CSV Data Features:
+## CSV Data Features:
     ⦁ Features: The CSV files used in this project contain fields like text, label, and location, where text represents the medical term 
       or abbreviation, label provides the expanded meaning, and location gives context for the term’s use.
     ⦁ Shape: Typically, the dataset includes several thousand rows, each representing a unique medical abbreviation or term.
     ⦁ Balanced or Not: The dataset is generally balanced as it covers a wide range of medical abbreviations and terms across various 
       medical domains (respiratory, cardiovascular, etc.), ensuring fair representation.
-
+      
 # Programming Languages + Frameworks
   ## Programming Languages
-    ### Python: The primary programming language used for this project. Python was selected due to its versatility, rich ecosystem of 
+  ### Python: The primary programming language used for this project. Python was selected due to its versatility, rich ecosystem of 
           machine learning libraries, and ease of integration with frameworks like Hugging Face Transformers 
 
   ## Frameworks and Tools
-    ### Transformers (by Hugging Face):
+  ### Transformers (by Hugging Face):
 
     ⦁ Purpose: Used to load, fine-tune, and run the Gemma-7B model for generating medical text responses. The Transformers library 
       provides efficient model loading, training, and deployment functionalities.
     ⦁ Why: It is the go-to library for handling large language models like Gemma-7B, offering pre-trained models and tokenizers that are 
       easy to use with state-of-the-art performance.
 
-    ### Unsloth:
+  ### Unsloth:
      ⦁	Purpose: Used to download and manage the FastLanguageModel versions like Gemma-7B. This tool is specifically designed for 
         handling generative AI models that require efficient training and inference.
-     ⦁ Why: Provides a streamlined API for handling large-scale models, with built-in optimizations such as LoRA (Low-Rank Adaptation).    ## Streamlit:
+     ⦁ Why: Provides a streamlined API for handling large-scale models, with built-in optimizations such as LoRA (Low-Rank Adaptation).
+     
+  ### Streamlit:
      ⦁ Purpose: A Python-based framework for building web applications, used here to create an interactive user interface for the 
         chatbot.
      ⦁ Why: Streamlit allows for fast, straightforward deployment of web apps without needing extensive front-end development 
@@ -194,31 +196,33 @@ End User Personas:
  ## Development Workflow: 
     (data collection → preprocessing → model fine-tuning → testing).  This workflow ensures an organized approach to the chatbot's 
      development, from gathering data to testing the final model.
-     ### Data Collection: 
-     The primary dataset used is the MeDAL (Medical Dataset for Abbreviation Disambiguation), which contains well-organized medical 
-     terms, abbreviations, and their expanded definitions.
-     ### Preprocessing: Data is preprocessed to ensure compatibility with the model, including tokenization, removing special 
+## Data Collection: 
+         The primary dataset used is the MeDAL (Medical Dataset for Abbreviation Disambiguation), which contains well-organized medical 
+         terms, abbreviations, and their expanded definitions.
+## Preprocessing: 
+         Data is preprocessed to ensure compatibility with the model, including tokenization, removing special 
          characters, and inserting EOS tokens.
-     ### Model Fine-Tuning: The pre-trained Gemma-7B model, from the Unsloth library, is fine-tuned using the MeDAL dataset, optimized 
+## Model Fine-Tuning: The pre-trained Gemma-7B model, from the Unsloth library, is fine-tuned using the MeDAL dataset, optimized 
          through LoRA to minimize resource consumption.
-     ### Testing: After fine-tuning, the chatbot was tested for accuracy, responsiveness, and the ability to handle various medical 
+## Testing: 
+         After fine-tuning, the chatbot was tested for accuracy, responsiveness, and the ability to handle various medical 
          queries in multiple languages.
  
 # Data Preparation
  ## Dataset Used:
-    ### MeDAL Dataset: The dataset used is the MeDAL (Medical Dataset for Abbreviation Disambiguation), which is a comprehensive source 
+        MeDAL Dataset: The dataset used is the MeDAL (Medical Dataset for Abbreviation Disambiguation), which is a comprehensive source 
         for medical abbreviations and terminology. This dataset is essential for training the chatbot to recognize and explain medical 
         terms accurately, especially within multilingual contexts.
-##vPreprocessing Steps:
+## Preprocessing Steps:
    ⦁ Tokenization: Prepared data for the model using Hugging Face tokenizers to ensure the model interprets input properly.
    ⦁ EOS Token Insertion: End-of-sequence (EOS) tokens were added to prevent infinite generation loops during response generation.
 
 # Model Fine-Tuning
  ## Parameter-Efficient Fine-Tuning:
-    ### LoRA (Low-Rank Adaptation): The project leverages LoRA to fine-tune the pre-trained Gemma-7B model. This method minimizes 
+    LoRA (Low-Rank Adaptation): The project leverages LoRA to fine-tune the pre-trained Gemma-7B model. This method minimizes 
         computational overhead by allowing only specific layers of the model to be fine-tuned, which reduces memory consumption and 
         speeds up the training process.
-    ### Gradient Checkpointing: Gradient checkpointing is enabled during fine-tuning to further reduce memory usage, allowing the model 
+    Gradient Checkpointing: Gradient checkpointing is enabled during fine-tuning to further reduce memory usage, allowing the model 
         to handle larger input sequences without requiring excessive computational resources.
 # Models Used:
  ## Gemma-7B: The core model used in the project, Gemma-7B, is a pre-trained model optimized for handling medical-related text generation tasks. It was fine-tuned using the MeDAL dataset and further optimized for efficient inference.
