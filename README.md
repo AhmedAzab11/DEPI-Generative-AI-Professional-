@@ -262,8 +262,8 @@ End User Personas:
       Memory Usage During Training: 1.773 GB (~12% of system memory).
 
     
-
-
+# MODEL LINK
+https://huggingface.co/mariam-essam/PytorchModelv2
 
 
 
